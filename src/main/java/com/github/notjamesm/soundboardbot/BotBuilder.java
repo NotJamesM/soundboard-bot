@@ -1,9 +1,9 @@
-package com.github.notjamesm.memebot;
+package com.github.notjamesm.soundboardbot;
 
-import com.github.notjamesm.memebot.audio.AudioPlayerSendHandler;
-import com.github.notjamesm.memebot.usecase.BotUtilsUseCase;
-import com.github.notjamesm.memebot.usecase.SoundboardUseCase;
-import com.github.notjamesm.memebot.usecase.TranslateUseCase;
+import com.github.notjamesm.soundboardbot.audio.AudioPlayerSendHandler;
+import com.github.notjamesm.soundboardbot.usecase.BotUtilsUseCase;
+import com.github.notjamesm.soundboardbot.usecase.SoundboardUseCase;
+import com.github.notjamesm.soundboardbot.usecase.TranslateUseCase;
 import com.google.cloud.translate.TranslateOptions;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
@@ -18,7 +18,7 @@ import java.util.Random;
 
 public class BotBuilder {
 
-    public static final String TOKEN = "*******************************";
+    public static final String TOKEN = "Nzc0NzA1NDQyMDc2NjIyODQ4.X6bqqg.whryulfB_M7kwjbKXXohwHkDX0w";
 
     public static void build() throws LoginException {
         final Logger logger = LoggerFactory.getLogger("BirthdayBot");

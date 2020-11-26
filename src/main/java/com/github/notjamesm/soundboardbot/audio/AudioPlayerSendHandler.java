@@ -1,4 +1,4 @@
-package com.github.notjamesm.memebot.audio;
+package com.github.notjamesm.soundboardbot.audio;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.track.playback.AudioFrame;

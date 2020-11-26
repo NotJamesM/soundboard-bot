@@ -1,4 +1,4 @@
-package com.github.notjamesm.memebot.usecase;
+package com.github.notjamesm.soundboardbot.usecase;
 
 import net.dv8tion.jda.api.entities.Emote;
 import net.dv8tion.jda.api.entities.Message;

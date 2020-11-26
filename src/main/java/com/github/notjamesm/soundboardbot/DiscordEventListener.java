@@ -1,14 +1,13 @@
-package com.github.notjamesm.memebot;
+package com.github.notjamesm.soundboardbot;
 
-import com.github.notjamesm.memebot.usecase.BotUtilsUseCase;
-import com.github.notjamesm.memebot.usecase.SoundboardUseCase;
-import com.github.notjamesm.memebot.usecase.TranslateUseCase;
+import com.github.notjamesm.soundboardbot.usecase.BotUtilsUseCase;
+import com.github.notjamesm.soundboardbot.usecase.SoundboardUseCase;
+import com.github.notjamesm.soundboardbot.usecase.TranslateUseCase;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.guild.voice.GuildVoiceJoinEvent;
 import net.dv8tion.jda.api.events.guild.voice.GuildVoiceMoveEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceUpdateEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.apache.commons.io.FilenameUtils;

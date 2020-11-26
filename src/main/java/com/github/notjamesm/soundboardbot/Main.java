@@ -1,4 +1,4 @@
-package com.github.notjamesm.memebot;
+package com.github.notjamesm.soundboardbot;
 
 import javax.security.auth.login.LoginException;
 

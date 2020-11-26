@@ -1,4 +1,4 @@
-package com.github.notjamesm.memebot.usecase;
+package com.github.notjamesm.soundboardbot.usecase;
 
 import com.google.cloud.translate.Translate;
 import com.google.cloud.translate.Translation;

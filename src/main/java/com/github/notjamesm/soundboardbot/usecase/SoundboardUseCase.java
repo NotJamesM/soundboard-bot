@@ -1,13 +1,12 @@
-package com.github.notjamesm.memebot.usecase;
+package com.github.notjamesm.soundboardbot.usecase;
 
-import com.github.notjamesm.memebot.audio.AudioPlayerSendHandler;
-import com.github.notjamesm.memebot.audio.AudioResultHandler;
-import com.github.notjamesm.memebot.audio.TrackScheduler;
+import com.github.notjamesm.soundboardbot.audio.AudioPlayerSendHandler;
+import com.github.notjamesm.soundboardbot.audio.AudioResultHandler;
+import com.github.notjamesm.soundboardbot.audio.TrackScheduler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.VoiceChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;

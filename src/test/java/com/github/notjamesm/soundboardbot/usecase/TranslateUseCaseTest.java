@@ -1,8 +1,4 @@
-package com.github.notjamesm.memebot.usecase;
-
-import com.google.cloud.translate.Translate;
-import com.google.cloud.translate.TranslateOptions;
-import org.junit.jupiter.api.Test;
+package com.github.notjamesm.soundboardbot.usecase;
 
 class TranslateUseCaseTest {
 

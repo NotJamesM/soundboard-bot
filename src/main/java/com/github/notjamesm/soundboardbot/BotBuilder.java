@@ -18,7 +18,7 @@ import java.util.Random;
 
 public class BotBuilder {
 
-    public static final String TOKEN = "Nzc0NzA1NDQyMDc2NjIyODQ4.X6bqqg.whryulfB_M7kwjbKXXohwHkDX0w";
+    public static final String TOKEN = "**********";
 
     public static void build() throws LoginException {
         final Logger logger = LoggerFactory.getLogger("BirthdayBot");

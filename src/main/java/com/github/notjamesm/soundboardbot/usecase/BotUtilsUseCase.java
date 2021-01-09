@@ -1,9 +1,6 @@
 package com.github.notjamesm.soundboardbot.usecase;
 
-import net.dv8tion.jda.api.entities.Emote;
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.entities.MessageHistory;
+import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +9,7 @@ import org.slf4j.Logger;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.lang.String.format;
 import static java.util.stream.Collectors.toList;
@@ -34,6 +32,13 @@ public class BotUtilsUseCase {
         final MessageHistory messageHistory = event.getChannel().getHistoryBefore(event.getMessageId(), 20).complete();
         messageHistory.getRetrievedHistory().stream().filter(this::shouldDelete).forEach(message -> message.delete().queue());
         event.getMessage().delete().queue();
+    }
+
+    public void listChannelIds(MessageReceivedEvent event) {
+        final List<VoiceChannel> voiceChannels = event.getGuild().getVoiceChannels();
+        final List<String> message = voiceChannels.stream().map(voiceChannel -> format("%s - %s", voiceChannel.getName(), voiceChannel.getId())).collect(toList());
+
+        event.getChannel().sendMessage(StringUtils.join(message, "\n")).queue();
     }
 
     public void listSounds(MessageReceivedEvent event) {

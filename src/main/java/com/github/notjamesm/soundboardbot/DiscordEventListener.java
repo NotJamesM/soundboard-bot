@@ -60,7 +60,9 @@ public class DiscordEventListener extends ListenerAdapter {
 
     private void attemptToMapCommand(@Nonnull MessageReceivedEvent event) {
         final String messageContent = event.getMessage().getContentRaw().toLowerCase();
-        if (messageContent.contains("+sb")) {
+        if (messageContent.contains("+sbt")) {
+            soundboardUseCase.soundBoardRequestTargeted(event);
+        } else if (messageContent.contains("+sb")) {
             soundboardUseCase.soundBoardRequest(event);
         } else if (messageContent.contains("+disconnect")) {
             soundboardUseCase.disconnect(event);
@@ -70,6 +72,8 @@ public class DiscordEventListener extends ListenerAdapter {
             botUtilsUseCase.help(event);
         } else if (messageContent.contains("+list")) {
             botUtilsUseCase.listSounds(event);
+        } else if (messageContent.contains("+channelids")) {
+            botUtilsUseCase.listChannelIds(event);
         } else if (messageContent.contains("+translate")) {
             translateUseCase.translate(event);
         } else {

@@ -86,6 +86,16 @@ public class SoundboardUseCase {
         }
     }
 
+    public void soundBoardRequestTargeted(MessageReceivedEvent event) {
+        if (validateTargetedRequest(event)) {
+            String s = event.getMessage().getContentRaw().split(" ")[1];
+            VoiceChannel voiceChannel = event.getGuild().getVoiceChannelById(s);
+            List<String> commandStringParams = new ArrayList<>(Arrays.asList(event.getMessage().getContentRaw().toLowerCase().split(" ")));
+            commandStringParams.remove(1);
+            playSound(event.getChannel(), commandStringParams, voiceChannel, event.getGuild());
+        }
+    }
+
     public void playSound(MessageChannel channel, List<String> commandParameters, VoiceChannel voiceChannel, Guild guild) {
         AudioManager guildAudioManager = guild.getAudioManager();
         TrackScheduler trackScheduler = new TrackScheduler(guildAudioManager);
@@ -146,6 +156,15 @@ public class SoundboardUseCase {
         return Arrays.asList(contentRaw.split(" "));
     }
 
+    private boolean validateTargetedRequest(MessageReceivedEvent event) {
+        if (player.getPlayingTrack() != null) {
+            event.getMessage().getChannel().sendMessage("I'm already playing somewhere else, chill bruv...").queue();
+            return false;
+        }
+
+        return event.getMessage().getContentRaw().matches("\\+sbt \\d+ \\w+ .*");
+    }
+
     private boolean validateRequest(MessageReceivedEvent event, VoiceChannel voiceChannel) {
         if (voiceChannel == null) {
             event.getMessage().getChannel().sendMessage("You must be in a voice channel to use this!").queue();
@@ -159,6 +178,7 @@ public class SoundboardUseCase {
         return true;
     }
 
+    @SuppressWarnings("ConstantConditions")
     private VoiceChannel getVoiceChannel(MessageReceivedEvent event) {
         return event.getMember().getVoiceState().getChannel();
     }

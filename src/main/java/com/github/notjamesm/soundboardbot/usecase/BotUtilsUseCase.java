@@ -56,7 +56,11 @@ public class BotUtilsUseCase {
             return;
         }
 
-        final List<String> collect = sounds.get(soundCategory).stream().map(this::getSoundName).collect(toList());
+        final List<String> collect = sounds.get(soundCategory).stream()
+                .sorted()
+                .map(this::getSoundName)
+                .collect(toList());
+
         String message = StringUtils.join(collect, '\n');
         channel.sendMessage(message).queue();
     }

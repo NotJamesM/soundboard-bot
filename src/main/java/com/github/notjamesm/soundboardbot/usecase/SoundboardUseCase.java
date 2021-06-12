@@ -33,38 +33,20 @@ public class SoundboardUseCase {
     private final Random random;
     private final Logger logger;
 
-    private static final Map<String, List<Path>> sounds;
-
-    static {
-        try {
-            final Path soundsPath = Path.of("sounds");
-            final List<Path> directories = Files.list(soundsPath).filter(Files::isDirectory).collect(toList());
-            sounds = directories.stream().map(SoundboardUseCase::getSoundPaths).collect(Collectors.toMap(Pair::getLeft, Pair::getRight));
-        } catch (IOException e) {
-            throw new IllegalStateException(e);
-        }
-    }
+    private final Path soundsPath;
+    private static Map<String, List<Path>> sounds;
 
     public static Map<String, List<Path>> getSounds() {
         return sounds;
     }
 
-    private static Pair<String, List<Path>> getSoundPaths(Path basePath) {
-        try {
-            final String key = FilenameUtils.getBaseName(basePath.getFileName().toString());
-            final List<Path> pathList = Files.list(basePath).filter(path -> !Files.isDirectory(path)).collect(toList());
-            return Pair.of(key, pathList);
-        } catch (IOException e) {
-            throw new IllegalStateException(e);
-        }
-    }
-
-    public SoundboardUseCase(AudioPlayerManager playerManager, AudioPlayer player, AudioPlayerSendHandler handler, Random random, Logger logger) {
+    public SoundboardUseCase(AudioPlayerManager playerManager, AudioPlayer player, AudioPlayerSendHandler handler, Random random, Logger logger, Path soundsPath) {
         this.playerManager = playerManager;
         this.player = player;
         this.handler = handler;
         this.random = random;
         this.logger = logger;
+        this.soundsPath = soundsPath;
         AudioSourceManagers.registerRemoteSources(playerManager);
     }
 
@@ -110,6 +92,21 @@ public class SoundboardUseCase {
             channel.sendMessage(format("Category not found for '%s'\nAvailable categories are '%s'",
                     commandParameters,
                     Arrays.toString(sounds.keySet().toArray()))).queue();
+        }
+    }
+
+    public void updateSoundMap() throws IOException {
+        final List<Path> directories = Files.list(soundsPath).filter(Files::isDirectory).collect(toList());
+        sounds = directories.stream().map(this::getSoundPaths).collect(Collectors.toMap(Pair::getLeft, Pair::getRight));
+    }
+
+    private Pair<String, List<Path>> getSoundPaths(Path basePath) {
+        try {
+            final String key = FilenameUtils.getBaseName(basePath.getFileName().toString());
+            final List<Path> pathList = Files.list(basePath).filter(path -> !Files.isDirectory(path)).collect(toList());
+            return Pair.of(key, pathList);
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
         }
     }
 
